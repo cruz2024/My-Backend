@@ -22,9 +22,12 @@ public class IngresoService {
 
     public Ingreso actualizar(Long id, Ingreso ingreso){
         Ingreso existente = repository.findById(id).orElseThrow();
-        existente.setNombre(ingreso.getNombre());
+        existente.setCategoria(ingreso.getCategoria());
+        existente.setProducto_servicio(ingreso.getProducto_servicio());
         existente.setCantidad(ingreso.getCantidad());
+        existente.setMonto(ingreso.getMonto());
         existente.setFecha(ingreso.getFecha());
+        existente.setDescripcion(ingreso.getDescripcion());
         return repository.save(existente);
     }
 

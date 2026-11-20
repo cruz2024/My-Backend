@@ -2,6 +2,7 @@ package com.getfin.controllers;
 
 import com.getfin.models.Ingreso;
 import com.getfin.service.IngresoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,12 +21,12 @@ public class IngresoController {
     }
 
     @PostMapping
-    public Ingreso guardar(@RequestBody Ingreso ingreso){
+    public Ingreso guardar(@Valid @RequestBody Ingreso ingreso){
         return service.guardar(ingreso);
     }
 
     @PutMapping("/{id}")
-    public Ingreso actualizar(@PathVariable Long id, @RequestBody Ingreso ingreso){
+    public Ingreso actualizar(@PathVariable Long id, @Valid @RequestBody Ingreso ingreso){
         return service.actualizar(id, ingreso);
     }
     @DeleteMapping("/{id}")

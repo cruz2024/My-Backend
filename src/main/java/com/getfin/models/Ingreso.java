@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDate;
 
@@ -11,11 +14,27 @@ import java.time.LocalDate;
 public class Ingreso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private  Long id;
-    private  String nombre;
+
+    @NotBlank(message = "Campo obligatorio")
+    private  String categoria;
+
+    @NotBlank(message = "Campo obligatorio")
+    private String producto_servicio;
+
+    @NotNull(message = "Campo obligatorio")
+    @Positive(message = "Cantidad mayor a 0")
     private  Double cantidad;
+
+    @NotNull(message = "Campo obligatorio")
+    @Positive(message = "Cantidad mayor a 0")
+    private  Double monto;
+
+    @NotNull(message = "Campo obligatorio")
     private LocalDate fecha;
+
+    @NotBlank(message = "Campo obligatorio")
+    private String descripcion;
 
     public Long getId() {
         return id;
@@ -25,12 +44,20 @@ public class Ingreso {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getCategoria() {
+        return categoria;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getProducto_servicio() {
+        return producto_servicio;
+    }
+
+    public void setProducto_servicio(String producto_servicio) {
+        this.producto_servicio = producto_servicio;
     }
 
     public Double getCantidad() {
@@ -41,11 +68,27 @@ public class Ingreso {
         this.cantidad = cantidad;
     }
 
+    public Double getMonto() {
+        return monto;
+    }
+
+    public void setMonto(Double monto) {
+        this.monto = monto;
+    }
+
     public LocalDate getFecha() {
         return fecha;
     }
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }
